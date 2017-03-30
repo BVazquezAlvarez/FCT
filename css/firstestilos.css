@@ -1,0 +1,13 @@
+body{
+    background: rgb(236, 240, 241);
+    color: black;
+}
+.navbar, .dropdown-menu{
+color: black;
+background:dimgrey;
+border: none;
+
+}
+a{
+  color:white  !important;
+}
