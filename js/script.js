@@ -1,5 +1,9 @@
+//***** VARIABLES GLOBALES**********//	
+	var accion;
+	var botonactual;
 
-function reseterror () {
+
+/*function reseterror () {
 	$('#mal').addClass('hide');
 	$('#mal').html("");
 	$('#inputname').removeClass('errorForm');
@@ -52,23 +56,45 @@ function formcontrol(){
 	return valido;
 
 }
-
-function actualizarDB(acc){
+*/
+function actualizarDB(acc, table){
 	$.ajax({
     // En data puedes utilizar un objeto JSON, un array o un query string
-    data: {"tipo" : acc, "name" : $('#inputname').val(),"position" :$('#inputposition').val(),"office" : $('#inputoffice').val(),"extn" : $('#inputextn').val(),"start_date" : $('#inputstartdate').val(),"salary" : $('#inputsalary').val()},
+    data: {		 'tipo' : acc,
+    			 'id':$('#inputid').val(),	
+				 'usuario':$('#inputuser').val(),
+				 'passwd':$('#inputpass').val(),
+				 'nombre':$('#inputname').val(),
+				 'apellidos':$('#inputapellidos').val(),
+				 'dni':$('#inputdni').val(),
+				 'tipousuario':$('#inputtuser').val(),
+				 'alta':$('#inputfechaalta').val(),
+				 'baja':$('#inputfechabaja').val(),
+				 'direccion':$('#inputdireccion').val(),
+				 'poblacion':$('#inputpoblacion').val(),
+				 'provincia':$('#inputprovincia').val(),
+				 'codpostal':$('#inputcodigopostal').val(),
+				 'fechanac':$('#inputfechanac').val(),
+				 'activo':$('#inputactivo').val()
+		},
     //Cambiar a type: POST si necesario
     type: "POST",
     // Formato de datos que se espera en la respuesta
-    dataType: "json",
+    dataType: "text",
     // URL a la que se enviará la solicitud Ajax
-    url: "../panels/actualiza.php",
+    url: "actualiza.php",
 	})
 	 .done(function( data, textStatus, jqXHR ) {
+
 	 	$('#exito').removeClass('hide');
 	 	setTimeout(function(){ $('#exito').addClass('hide'); }, 3000);
 	 })
 	  .success(function( data, textStatus, jqXHR ) {
+	  	if(acc="engadir"){
+	  	var f=botonactual.closest('tr');
+		fila= table.row(f).index();
+		table.cell(fila,0).data(data).draw('false');;
+	 	}
 	 	$('#exito').removeClass('hide');
 	 	setTimeout(function(){ $('#exito').addClass('hide'); }, 3000);
 	 })
@@ -87,28 +113,35 @@ function actualizarDB(acc){
 
 $(document).ready(function () {
 
-//***** VARIABLES GLOBALES**********//	
-	var accion;
-	var botonactual;
+
 
 //******* PRE-CARGA TABLA***********//
     var table=$('#example').DataTable( {
-    	language:{url:"../plugins/datatables/Galician.json"},
+    	language:{url:"plugins/datatables/Galician.json"},
     	//processing: true,
         //serverSide: true,
-        ajax: "../panels/leecli.php",
+        ajax: "leecli.php",
         columns: [
-            { data: "name" },
-            { data: "position" },
-            { data: "office" },
-            { data: "extn" },
-            { data: "start_date" },
-            { data: "salary" },
+            { data: "id" },
+            { data: "usuario" },
+            //{ data: "passwd","visible": false, },
+            { data: "nombre" },
+            { data: "apellidos" },
+            { data: "tipousuario", "visible": false, },
+            { data: "dni" },
+            { data: "direccion" },
+            { data: "poblacion" },
+            { data: "alta", "visible": false, },
+            { data: "baja","visible": false, },
+            { data: "codpostal" },
+            { data: "provincia","visible": false, },
+            { data: "fechanac" },
+            { data: "activo","visible": false, },
             { data: null,
         			orderable:false,
         			searchable:false,
         			sortable:false,
-        			defaultContent: "<div class='text-center'><button type='button' class='editar btn btn-primary btn-xs' title='Editar'><i class='glyphicon glyphicon-pencil'></i></button>&nbsp;&nbsp;&nbsp;<button type='button' class='eliminar btn btn-danger btn-xs title='Borrar'><i class='glyphicon glyphicon-trash'></i></button></div>" }
+        			defaultContent: "<div class='text-center'><button type='button' class='editar btn btn-primary btn-xs' title='Editar'><i class='glyphicon glyphicon-pencil'></i></button>" }
         ],
         dom: 'lBfrtip',
     buttons: [
@@ -117,7 +150,7 @@ $(document).ready(function () {
             text: '<i class="glyphicon glyphicon-save-file"></i>',
             className: 'btn btn-danger btn-md',
             titleAttr: 'Exportar PDF',
-            title: 'Trabajadores'
+            title: 'Alumnos'
 
 
         },
@@ -146,18 +179,26 @@ $(document).ready(function () {
         	text: 'Insertar',
         	className:'btn btn-info btn-md',
         	action: function () {
-        		reseterror();
         		$('#formodal')[0].reset();
         		accion="engadir";
         		$('#guardarform').removeClass('btn-danger').class;
         		$('#guardarform').html("Insertar");
         		$('#titulomodal').html("Nuevo empleado");
-        		$('#inputname').prop( "disabled", false );
-				 $('#inputposition').prop( "disabled", false );
-				 $('#inputoffice').prop( "disabled", false );
-				 $('#inputextn').prop( "disabled", false );
-				 $('#inputstartdate').prop( "disabled", false );
-				 $('#inputsalary').prop( "disabled", false );
+        		$('#inputuser').prop( "disabled", true );
+        		$('#inputuser').prop( "disabled", false );
+				$('#inputpass').prop( "disabled", false );
+				$('#inputname').prop( "disabled", false );
+				$('#inputtuser').prop( "disabled", false );
+				$('#inputapellidos').prop( "disabled", false );
+				$('#inputdni').prop( "disabled", false );
+				$('#inputfechaalta').prop( "disabled", false );
+				$('#inputfechabaja').prop( "disabled", false );
+				$('#inputdireccion').prop( "disabled", false );
+				$('#inputpoblacion').prop( "disabled", false );
+				$('#inputcodigopostal').prop( "disabled", false );
+				$('#inputprovincia').prop( "disabled", false );
+				$('#inputfechanac').prop( "disabled", false );
+				$('#inputactivo').prop( "disabled", false );
         		$('#vmodal').modal({
 
         			show: true, backdrop: false, keyboard:false	
@@ -177,37 +218,59 @@ $(document).ready(function () {
 
 
 //****** BOTON GUARDAR MODAL********//
+
+
 $('#guardarform').click(function() {
 	var fila;
-	if(accion=="engadir" || accion=="editar"){
+/*	if(accion=="engadir" || accion=="editar"){
 		if(!formcontrol()){
 			$('#mal').removeClass('hide');
 			return false;
 		}
 
-	}
+	}*/
 	if(accion=="engadir"){
-		actualizarDB(accion);
-		var valores={'name':$('#inputname').val(),
-				 'position':$('#inputposition').val(),
-				 'office':$('#inputoffice').val(),
-				 'extn':$('#inputextn').val(),
-				 'start_date':$('#inputstartdate').val(),
-				 'salary':$('#inputsalary').val()
+		actualizarDB(accion,table,botonactual);
+		var valores={
+				 'id':$('#inputid').val(),
+				 'usuario':$('#inputuser').val(),
+				 'nombre':$('#inputname').val(),
+				 'apellidos':$('#inputapellidos').val(),				
+				 'tipousuario':$('#inputtuser').val(),
+				 'dni':$('#inputdni').val(),
+				 'direccion':$('#inputdireccion').val(),
+				 'poblacion'	:$('#inputpoblacion').val(),
+				 'alta':$('#inputfechaalta').val(),
+				 'baja':$('#inputfechabaja').val(),
+		         'codpostal':$('#inputcodigopostal').val(),
+				 'provincia':$('#inputprovincia').val(),
+				 'fechanac':$('#inputfechanac').val(),
+				 'activo':$('#inputactivo').val()
+
+
 				 };
 		table.row.add(valores).draw('false');
 		$('#formodal')[0].reset();
 
 	}else if (accion=="editar") {
-		actualizarDB(accion);
+		actualizarDB(accion,table,botonactual);
 		var f=botonactual.closest('tr');
 		fila= table.row(f).index();
-		var valores=[$('#inputname').val(),
-					 $('#inputposition').val(),
-					 $('#inputoffice').val(),
-					 $('#inputextn').val(),
-					 $('#inputstartdate').val(),
-					 $('#inputsalary').val()
+		var valores=[
+				 $('#inputid').val(),
+				 $('#inputuser').val(),
+				 $('#inputname').val(),
+				 $('#inputapellidos').val(),
+				 $('#inputtuser').val(),				 
+				 $('#inputdni').val(),
+				 $('#inputdireccion').val(),
+				 $('#inputpoblacion').val(),
+				 $('#inputfechaalta').val(),
+				 $('#inputfechabaja').val(),
+				 $('#inputcodigopostal').val(),
+				 $('#inputprovincia').val(),
+				 $('#inputfechanac').val(),
+				 $('#inputactivo').val()
 					 ];
 		var columnas=table.columns().header().count();
 		for (var i = 0; i < columnas; i++) {
@@ -216,7 +279,7 @@ $('#guardarform').click(function() {
 		table.draw(false);
 		$('#vmodal').modal('hide');
 	}else{
-		actualizarDB(accion);
+		actualizarDB(accion,table,botonactual);
 		fila=botonactual.closest('tr');
 		table.row(fila).remove().draw(false);
 		$('#vmodal').modal('hide');
@@ -225,7 +288,7 @@ $('#guardarform').click(function() {
 
 //**************BOTON ELIMINAR************
 $('#example tbody').on('click', '.eliminar', function() {
-	reseterror();
+	//reseterror();
 
 	accion="borrar";
 	botonactual=$(this);
@@ -237,20 +300,28 @@ $('#example tbody').on('click', '.eliminar', function() {
 				{
         			show: true, backdrop: false, keyboard:false	
         		});
-
-	$('#inputname').val(table.cell(fila,0).data()).prop( "disabled", true );
-	$('#inputposition').val(table.cell(fila,1).data()).prop( "disabled", true );
-	$('#inputoffice').val(table.cell(fila,2).data()).prop( "disabled", true );
-	$('#inputextn').val(table.cell(fila,3).data()).prop( "disabled", true );
-	$('#inputstartdate').val(table.cell(fila,4).data()).prop( "disabled", true );
-	$('#inputsalary').val(table.cell(fila,5).data()).prop( "disabled", true );
+	$('#inputid').val(table.cell(fila,0).data()).prop( "disabled", true );
+	$('#inputuser').val(table.cell(fila,1).data()).prop( "disabled", false );
+	//$('#inputpass').val(table.cell(fila,3).data()).prop( "disabled", false );
+	$('#inputname').val(table.cell(fila,2).data()).prop( "disabled", false );
+	$('#inputapellidos').val(table.cell(fila,3).data()).prop( "disabled", false );
+	$('#inputtuser').val(table.cell(fila,4).data()).prop( "disabled", false );
+	$('#inputdni').val(table.cell(fila,5).data()).prop( "disabled", false );
+	$('#inputdireccion').val(table.cell(fila,6).data()).prop( "disabled", false );
+	$('#inputpoblacion').val(table.cell(fila,7).data()).prop( "disabled", false );
+	$('#inputfechaalta').val(table.cell(fila,8).data()).prop( "disabled", false );
+	$('#inputfechabaja').val(table.cell(fila,9).data()).prop( "disabled", false );
+	$('#inputcodigopostal').val(table.cell(fila,10).data()).prop( "disabled", false );
+	$('#inputprovincia').val(table.cell(fila,11).data()).prop( "disabled", false );
+	$('#inputfechanac').val(table.cell(fila,12).data()).prop( "disabled", false );
+	$('#inputactivo').val(table.cell(fila,13).data()).prop( "disabled", false );
 
 	
 });
 
 //**************BOTON EDITAR************
 $('#example tbody').on('click', '.editar', function() {
-	reseterror();
+	//reseterror();
 
 	accion="editar";
 	botonactual=$(this);
@@ -263,12 +334,22 @@ $('#example tbody').on('click', '.editar', function() {
         			show: true, backdrop: false, keyboard:false	
         		});
 
-	$('#inputname').val(table.cell(fila,0).data()).prop( "disabled", false );
-	$('#inputposition').val(table.cell(fila,1).data()).prop( "disabled", false );
-	$('#inputoffice').val(table.cell(fila,2).data()).prop( "disabled", false );
-	$('#inputextn').val(table.cell(fila,3).data()).prop( "disabled", true );
-	$('#inputstartdate').val(table.cell(fila,4).data()).prop( "disabled", false );
-	$('#inputsalary').val(table.cell(fila,5).data()).prop( "disabled", false );
+	$('#inputid').val(table.cell(fila,0).data()).prop( "disabled", true );
+	$('#inputuser').val(table.cell(fila,1).data()).prop( "disabled", false );
+	//$('#inputpass').val(table.cell(fila,3).data()).prop( "disabled", false );
+	$('#inputname').val(table.cell(fila,2).data()).prop( "disabled", false );
+	$('#inputapellidos').val(table.cell(fila,3).data()).prop( "disabled", false );
+	$('#inputtuser').val(table.cell(fila,4).data()).prop( "disabled", false );
+	$('#inputdni').val(table.cell(fila,5).data()).prop( "disabled", false );
+	$('#inputdireccion').val(table.cell(fila,6).data()).prop( "disabled", false );
+	$('#inputpoblacion').val(table.cell(fila,7).data()).prop( "disabled", false );
+	$('#inputfechaalta').val(table.cell(fila,8).data()).prop( "disabled", false );
+	$('#inputfechabaja').val(table.cell(fila,9).data()).prop( "disabled", false );
+	$('#inputcodigopostal').val(table.cell(fila,10).data()).prop( "disabled", false );
+	$('#inputprovincia').val(table.cell(fila,11).data()).prop( "disabled", false );
+	$('#inputfechanac').val(table.cell(fila,12).data()).prop( "disabled", false );
+	$('#inputactivo').val(table.cell(fila,13).data()).prop( "disabled", false );
+
 
 });
 	

@@ -47,7 +47,7 @@
                         <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Ver usuarios</a></li>
-                                <li><a href="register.html">Registrar nuevo</a></li>
+                                <li><a href="register.html">Registrar usuario</a></li>
                             </ul>
                         </li>                        
                     </ul>
@@ -73,7 +73,13 @@
                     <label class="control-label"><h4>Registrar nuevo usuario</h4></label>
                 </div>
                 <div class="frm-body">
-                    <form action="run" method="post" class="form-horizontal">
+                    <form action="run" method="post"  class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-3"><label class="control-label">Usuario: </label></div>
+                            <div class="col-sm-4">    
+                                <input class="form-horizontal" type="text" name="name" placeholder="Usuario" required/>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-sm-3"><label class="control-label">Usuario: </label></div>
                             <div class="col-sm-4">    
@@ -104,7 +110,13 @@
             </div>
         </div>
 
+<script type="text/javascript" charset="utf-8">
+    
 
+
+
+    
+</script>
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../js/jquery/jquery.js"></script>

@@ -11,6 +11,7 @@
     <link href="css/bootstrap/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="plugins/datatables/datatables.min.css">
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/firstestilos.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -20,14 +21,60 @@
     <![endif]-->
   </head>
   <body>
+    <div class="navbar-wrapper">
+    <div class="container-fluid">
+        <nav class="navbar navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Logo</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#" class="">Inicio</a></li>
+                        <li class=" dropdown">
+                            <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Departments <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class=" dropdown">
+                                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">View Departments</a>
+                                </li>
+                                <li><a href="#">Add New</a></li>
+                            </ul>
+                        </li>
+                        <li class=" dropdown"><a class="d ropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">Ver usuarios</a></li>
+                                <li><a href="register.php">Registrar nuevo</a></li>
+                            </ul>
+                        </li>                        
+                    </ul>
+                    <ul class="nav navbar-nav pull-right">
+                        <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Conectado como '.$_SESSION["usuario"].' <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Cambiar contraseña</a></li>
+                                <li><a href="#">Mi perfil</a></li>
+                            </ul>
+                        </li>
+                        <li class=""><a href="#">Desconectar</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
 <div class="container">
- <div class="frm-login" style="margin-top: 40px;">
+ <div class="frm-login" style="margin-top: 90px;">
                 <div class="frm-head"> 
                     <div class="round round-sm black"><span class="glyphicon glyphicon-user"></span></div>
                     <label class="control-label"><h4>Cambiar Contraseña</h4></label>
                 </div>
                 <div class="frm-body">
-                    <form action="index.php" method="post" class="form-horizontal">
+                    <form action=".php" method="post" class="form-horizontal">
                         <div class="form-group">
                             <div class="col-sm-3"><label class="control-label">Antigua contraseña: </label></div>
                             <div class="col-sm-4">    
@@ -36,7 +83,14 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-3">
-                                <label class="control-label">Contraseña: </label></div>
+                                <label class="control-label">Contraseña nueva: </label></div>
+                            <div class="col-sm-4">
+                                    <input class="form-horizontal" type="password" name="pass" placeholder="Contraseña" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label class="control-label">Repita la nueva contraseña: </label></div>
                             <div class="col-sm-4">
                                     <input class="form-horizontal" type="password" name="pass" placeholder="Contraseña" required/>
                             </div>
@@ -49,9 +103,9 @@
                         </div>
                     </form>
                 </div>
-            </div>
-        </div>
-</div>
+     </div>
+ </div>
+
 
  	<script src="plugins/datatables/datatables.min.js" ></script>
     <script src="js/bootstrap/bootstrap.js"></script>

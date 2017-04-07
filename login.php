@@ -1,10 +1,8 @@
 <?php
+require_once('data/conexiondb.php');
 require_once('data/templates.php');
 
 
-session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 $loginnormal='
   <body>
 <div class="container">
@@ -101,7 +99,6 @@ if(isset($_POST["contra"]) && isset($_POST["usuario"])){
        echo $header;
 	   echo $loginerror;
        echo $footer;
- 
     }
 
 }else{
