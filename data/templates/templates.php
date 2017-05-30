@@ -9,14 +9,14 @@ $header='<!DOCTYPE html>
     <title>FCT</title>
 
     <link href="css/bootstrap/bootstrap.css" rel="stylesheet">
+    <link href="css/jquery/jquery-ui.css" rel="stylesheet">
+    <link href="css/jquery/jquery-ui.structure.css" rel="stylesheet">
+    <link href="css/jquery/jquery-ui.theme.css" rel="stylesheet">
     <link rel="stylesheet" href="plugins/datatables/datatables.min.css">
     <link rel="stylesheet" href="css/firstestilos.css">
     <link rel="stylesheet" href="css/estilos.css">
   </head>
-  <body>
-  <script src="plugins/datatables/datatables.min.js" ></script>
-    <script src="js/bootstrap/bootstrap.js"></script>
- <script src="js/script.js"></script>'
+  <body>'
   ;
 
 
@@ -38,19 +38,21 @@ $navbaradmin='
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#" class="">Inicio</a></li>
                         <li class=" dropdown">
-                            <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Departments <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FCT Alumnos<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li class=" dropdown">
-                                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">View Departments</a>
+                                    <a href="calendarioadmin" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ver Calendarios</a>
                                 </li>
-                                <li><a href="#">Add New</a></li>
+                                <li><a href="fctasignador">Asignador FCT</a></li>
                             </ul>
                         </li>
                         <li class=" dropdown"><a class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios <span class="caret"></span></a>
                             <ul class="dropdown-menu">
+                                <li><a id="importCSV">Importar varios usuarios</a></li>                           
+                                <li><a id="gestadmin">Gestionar Administradores</a></li>
                                 <li><a id="gestal">Gestionar Alumnos</a></li>
                                 <li><a id="gestprof">Gestionar Profesores</a></li>
-                                <li><a id="gestprof">Gestionar FCT</a></li>
+                                <li><a id="gestFCT">Gestionar FCT</a></li>
                             </ul>
                         </li>                        
                     </ul>
@@ -58,7 +60,7 @@ $navbaradmin='
                         <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Conectado como '.$_SESSION["usuario"].' <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Cambiar contraseña</a></li>
-                                <li><a href="#">Mi perfil</a></li>
+                                <li><a id="perfil">Mi perfil</a></li>
                             </ul>
                         </li>
                         <li class=""><a href="#">Desconectar</a></li>
@@ -90,18 +92,18 @@ $navbarprofe='<body>
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#" class="">Inicio</a></li>
                         <li class=" dropdown">
-                            <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Departments <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FCT Alumnos<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li class=" dropdown">
-                                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">View Departments</a>
+                                    <a href="calendarioadmin" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ver Calendarios</a>
                                 </li>
-                                <li><a href="#">Add New</a></li>
+                                <li><a href="fctasignador">Asignador FCT</a></li>
                             </ul>
                         </li>
                         <li class=" dropdown"><a class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a id="gestal">Gestionar Alumnos</a></li>
-                                <li><a id="gesFCT">Gestionar FCT</a></li>
+                                <li><a id="gesFCT">Gestionar Empresas</a></li>
                             </ul>
                         </li>                        
                     </ul>
@@ -109,7 +111,7 @@ $navbarprofe='<body>
                         <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Conectado como '.$_SESSION["usuario"].' <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Cambiar contraseña</a></li>
-                                <li><a href="#">Mi perfil</a></li>
+                                <li><a id="perfil">Mi perfil</a></li>
                             </ul>
                         </li>
                         <li class=""><a href="#">Desconectar</a></li>
@@ -141,20 +143,19 @@ $navbaruser='<body>
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#" class="">Inicio</a></li>
                         <li class=" dropdown">
-                            <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Departments <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Calendario <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li class=" dropdown">
-                                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">View Departments</a>
+                                    <a href="calendarioal" id="calendarioal" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestionar Calendario</a>
                                 </li>
-                                <li><a href="#">Add New</a></li>
                             </ul>
                         </li>                                              
                     </ul>
                     <ul class="nav navbar-nav pull-right">
                         <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Conectado como '.$_SESSION["usuario"].'  <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Cambiar contraseña</a></li>
-                                <li><a href="#">Mi perfil</a></li>
+                                <li><a >Cambiar contraseña</a></li>
+                                <li><a id="perfil" >Mi perfil</a></li>
                             </ul>
                         </li>
                         <li class=""><a href="#">Desconectar</a></li>
@@ -164,10 +165,22 @@ $navbaruser='<body>
         </nav>
     </div>
 </div>
+<div id="contenido" class="container"></div>
+
 ';
 
 
-$footer='   
+$scripts=' 
+    <script src="plugins/datatables/datatables.min.js" ></script>
+    <script src="js/bootstrap/bootstrap.js"></script>
+    <script src="js/jquery/jquery-ui.js"></script>
+    <script src="js/jquery/jquery.validate.min.js"></script>
+    <script src="js/polyfiller/modernizr-custom.js"></script>
+    
+    ';
+
+
+$footer='
   </body>
 </html>';
 

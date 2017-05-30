@@ -8,6 +8,11 @@ background:dimgrey;
 border: none;
 
 }
-a{
+.dropdown >a, ul>li>a{
   color:white  !important;
+}
+
+#panelinfofct{
+	width: 30%;
+	padding: 10px;
 }

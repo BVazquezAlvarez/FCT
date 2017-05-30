@@ -1,6 +1,6 @@
 <?php
 require_once('data/conexiondb.php');
-require_once('data/templates.php');
+require_once('data/templates/templates.php');
 
 
 $loginnormal='
@@ -79,18 +79,21 @@ if(isset($_SESSION["usuario"]) && isset($_SESSION["activo"])){
 
 if(isset($_POST["contra"]) && isset($_POST["usuario"])){
 
-    $sql = "SELECT usuario,passwd,tipousuario,baja,activo FROM usuarios where usuario='".$_POST['usuario']."'";
+    $sql = "SELECT id,usuario,passwd,tipousuario,baja,activo FROM usuarios where usuario='".$_POST['usuario']."'";
     $resultado = $mysqli->query($sql);  
     if($mysqli->errno) echo($mysqli->error);  
     if ($row = $resultado->fetch_row()) {
-     	$usuario=$row[0];
-      	$passwd=$row[1];
-     	$tipousuario=$row[2];
-      	$baja=$row[3];
-      	$activo=$row[4];
+        $id=$row[0];
+     	$usuario=$row[1];
+      	$passwd=$row[2];
+     	$tipousuario=$row[3];
+      	$baja=$row[4];
+      	$activo=$row[5];
     }
-
-    if ($passwd==$_POST["contra"] && $activo==1 && $baja==null) {
+    //password_hash($_POST["contra"], PASSWORD_DEFAULT);
+    
+    if (password_verify($_POST["contra"],$passwd) && $activo==1 ) {
+        $_SESSION["id"]=$id;
     	$_SESSION["usuario"]=$usuario;
      	$_SESSION["tipousuario"]=$tipousuario;
       	$_SESSION["activo"]=$activo;
