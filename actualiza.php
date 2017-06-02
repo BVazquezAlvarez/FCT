@@ -94,7 +94,6 @@ if ($usuariobase == "alumno") {
         $mysqli->query($sql);
         $newid = $mysqli->insert_id;
         echo $newid;
-        ;
     } elseif ($tipo == "editar") {
         $sql = "UPDATE `empresas` SET `razon_social` = '" . $razonsocial . "', `direccion` = '" . $direccion . "', `poblacion` = '" . $poblacion . "', `codpostal` = '" . $codpostal . "', `provincia` = '" . $provincia . "', `pais` = '" . $pais . "', `contacto` = '" . $contacto . "', `telefono` = '" . $telefono . "', `movil` = '" . $movil . "' WHERE `empresas`.`id` = " . $id;
         $mysqli->query($sql);

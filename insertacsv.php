@@ -19,8 +19,6 @@ require_once('data/conexiondb.php');
 		  	 $tuser=1;
  		}else if($_POST["tipouser"]=="admin"){
  			 $tuser=0;
- 		}else{
- 			 header("HTTP/1.0 404 Not Found");
  		}
 
  		 	
@@ -58,7 +56,8 @@ require_once('data/conexiondb.php');
 	 				
 	 			if(!$tipoex)
 				{
-					$contnoint=$contnoint+1;										
+					$contnoint=$contnoint+1;
+
 				}
 				else {
 					 $contint=$contint+1;
@@ -69,7 +68,7 @@ require_once('data/conexiondb.php');
 	         fclose($file);	
 		 }
 
-		 echo "Usuarios insertados: $contint<br>Usuarios no insertados: $contnoint";
+		 echo "Usuarios insertados: $contint<br>Usuarios no insertados: $contnoint<br>Fallo";
 		 
  
  

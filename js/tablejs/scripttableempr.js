@@ -80,6 +80,7 @@ function actualizarDB(acc, table){
 
 $(document).ready(function () {
 
+
 if (!Modernizr.inputtypes.date) {
             $("input[type=date]").datepicker({
                 closeText: "Cerrar",

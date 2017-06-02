@@ -170,7 +170,6 @@ $contenido = "
     </table>
     </div>
     </div>
-    <script src='js/formvalidar.js'></script>
     <script src='js/tablejs/scripttableprof.js'></script>
    
 

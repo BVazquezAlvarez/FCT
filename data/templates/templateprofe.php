@@ -39,7 +39,7 @@ $navbarprofe='<body>
                                 <li><a id="perfil">Mi perfil</a></li>
                             </ul>
                         </li>
-                        <li class=""><a href="#">Desconectar</a></li>
+                        <li class=""><a href="deslog">Desconectar</a></li>
                     </ul>
                 </div>
             </div>

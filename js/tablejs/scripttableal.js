@@ -64,9 +64,161 @@ function actualizarDB(acc, table) {
             });
 }
 
+function submitUpdate() {
+        var fila;
+      	var table = $('#example').DataTable();
+        
+        if (accion == "engadir") {
+            actualizarDB(accion, table, botonactual);
+            var valores = {
+                'id': $('#inputid').val(),
+                'usuario': $('#inputuser').val(),
+                'correo': $('#inputcorreo').val(),
+                'nombre': $('#inputname').val(),
+                'apellidos': $('#inputapellidos').val(),
+                'tipousuario': $('#inputtuser').val(),
+                'dni': $('#inputdni').val(),
+                'direccion': $('#inputdireccion').val(),
+                'poblacion': $('#inputpoblacion').val(),
+                'alta': $('#inputfechaalta').val(),
+                'baja': $('#inputfechabaja').val(),
+                'codpostal': $('#inputcodigopostal').val(),
+                'provincia': $('#inputprovincia').val(),
+                'fechanac': $('#inputfechanac').val(),
+                'activo': $('#inputactivo').val()
+
+
+            };
+            botonactual = table.row.add(valores).draw('false');
+            $('#formodal')[0].reset();
+
+        } else if (accion == "editar") {
+            actualizarDB(accion, table, botonactual);
+            var f = botonactual.closest('tr');
+            fila = table.row(f).index();
+            var valores = [
+                $('#inputid').val(),
+                $('#inputuser').val(),
+                $('#inputcorreo').val(),
+                $('#inputname').val(),
+                $('#inputapellidos').val(),
+                $('#inputtuser').val(),
+                $('#inputdni').val(),
+                $('#inputdireccion').val(),
+                $('#inputpoblacion').val(),
+                $('#inputfechaalta').val(),
+                $('#inputfechabaja').val(),
+                $('#inputcodigopostal').val(),
+                $('#inputprovincia').val(),
+                $('#inputfechanac').val(),
+                $('#inputactivo').val()
+            ];
+            var columnas = table.columns().header().count();
+            for (var i = 0; i < columnas; i++) {
+                table.cell(fila, i).data(valores[i]);
+            }
+            table.draw(false);
+            $('#vmodal').modal('hide');
+        }
+           	 
+  }
 
 
 $(document).ready(function () {
+	
+$("#formodal").validate({
+
+			rules: {
+				inputuser: {
+					required: true,
+					minlength: 4,
+					maxlength: 20
+
+				},
+				inputpass: {
+					required: false,
+					minlength: 5
+				},
+				inputname: "required",
+				inputapellidos:"required",
+				inputdni: "required",
+				inputcorreo: "required",
+				inputdireccion: "required",
+				inputpoblacion: "required",
+				inputfechaalta: {
+					required: true,
+					date: true,
+					//dateLessThan : '#inputfechabaja'
+
+				},
+				inputfechabaja: {
+					required: false,
+					date: true,
+					//dateGreaterThan : '#inputfechaalta'
+				},
+				inputcodigopostal: {
+					required: true,
+					maxlength: 5
+				},
+				inputprovincia: {
+					required: true,
+					maxlength: 45
+				},
+				inputfechanac: {
+					required: true,
+					date: true,
+				},
+
+
+
+			},
+			messages: {
+				inputuser: {
+					required: "Inserta un usuario",
+					minlength: "El nombre de usuario necesita al menos 4 carácteres",
+					maxlength: "El nombre de usuario admite 20 caracteres como máximo"
+				},
+				inputpass: {
+					minlength: "Tu contraseña tiene que tener al menos 5 carácteres"
+				},
+				inputname: "Inserta un nombre",
+				inputapellidos: "Inserta los apellidos",
+				inputdni: "Inserta el DNI",
+				inputdireccion: "Inserta la direccion",
+				inputpoblacion: "Inserta la población ",
+				inputfechaalta: {
+					required: "Inserte una fecha de alta",
+					date: "Tiene que ser un formato de fecha válida (AAAA-MM-DD)",
+					dateLessThan : 'Esta fecha tiene que ser anterior a la fecha de baja'
+
+				},
+				inputfechabaja: {	
+					date: "Tiene que ser un formato de fecha válida (AAAA-MM-DD)",
+					dateLessThan : 'Esta fecha tiene que ser posterior a la fecha de alta'
+				},
+				inputcodigopostal: {
+					required: "Inserte un código postal",
+					maxlength: "5 dígitos como máximo"
+				},
+				inputprovincia: {
+					required: "Inserte una provincia",
+					maxlength: "Como máximo 45 caracteres"
+				},
+				inputfechanac: {
+					required: "Inserte una fecha de nacimiento",
+					date: "Tiene que ser un formato de fecha válida (AAAA-MM-DD)"
+				}
+
+
+			},
+			  submitHandler: function(form) {
+			    submitUpdate();
+			  }
+
+
+		});
+
+
 
     if (!Modernizr.inputtypes.date) {
         $("input[type=date]").datepicker({
@@ -183,70 +335,14 @@ $(document).ready(function () {
 
     });
 
+$("#guardarform").click(function(event) {
+$("#formodal").submit();
 
-
+});
 //****** BOTON GUARDAR MODAL********//
 
-   $('#formodal').submit(function (event) {
-   	alert("SSSSSSSSSSSSSSSSSSSS");
-        var fila;
-      
-        
-        if (accion == "engadir") {
-            actualizarDB(accion, table, botonactual);
-            var valores = {
-                'id': $('#inputid').val(),
-                'usuario': $('#inputuser').val(),
-                'correo': $('#inputcorreo').val(),
-                'nombre': $('#inputname').val(),
-                'apellidos': $('#inputapellidos').val(),
-                'tipousuario': $('#inputtuser').val(),
-                'dni': $('#inputdni').val(),
-                'direccion': $('#inputdireccion').val(),
-                'poblacion': $('#inputpoblacion').val(),
-                'alta': $('#inputfechaalta').val(),
-                'baja': $('#inputfechabaja').val(),
-                'codpostal': $('#inputcodigopostal').val(),
-                'provincia': $('#inputprovincia').val(),
-                'fechanac': $('#inputfechanac').val(),
-                'activo': $('#inputactivo').val()
+  
 
-
-            };
-            botonactual = table.row.add(valores).draw('false');
-            $('#formodal')[0].reset();
-
-        } else if (accion == "editar") {
-            actualizarDB(accion, table, botonactual);
-            var f = botonactual.closest('tr');
-            fila = table.row(f).index();
-            var valores = [
-                $('#inputid').val(),
-                $('#inputuser').val(),
-                $('#inputcorreo').val(),
-                $('#inputname').val(),
-                $('#inputapellidos').val(),
-                $('#inputtuser').val(),
-                $('#inputdni').val(),
-                $('#inputdireccion').val(),
-                $('#inputpoblacion').val(),
-                $('#inputfechaalta').val(),
-                $('#inputfechabaja').val(),
-                $('#inputcodigopostal').val(),
-                $('#inputprovincia').val(),
-                $('#inputfechanac').val(),
-                $('#inputactivo').val()
-            ];
-            var columnas = table.columns().header().count();
-            for (var i = 0; i < columnas; i++) {
-                table.cell(fila, i).data(valores[i]);
-            }
-            table.draw(false);
-            $('#vmodal').modal('hide');
-        }
-           	 event.preventDefault();
-
-   });
 
 //**************BOTON EDITAR************
     $('#example tbody').on('click', '.editar', function () {
@@ -294,7 +390,7 @@ $(document).ready(function () {
             },
             type: "POST",
             dataType: "html",
-            url: "calendaral.php",
+            url: "data/pages/calendaral.php",
         })
                 .done(function (data, textStatus, jqXHR) {
                     if (console && console.log) {

@@ -1,5 +1,6 @@
 <?php 
-
+require_once('../permisos.php');
+isprofe();
 $contenido = "
   <div  class='container' style='margin-top: 90px;'>
   <div id='mal2' class='alert alert-danger hide alertabsolute'>

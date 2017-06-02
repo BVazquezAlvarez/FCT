@@ -1,12 +1,16 @@
 <?php 
-require_once('data/conexiondb.php');
+require_once('../conexiondb.php');
+require_once('../permisos.php');
+
+isuser();
+
 if($_SESSION['tipousuario']==3){
      $id=$_SESSION['id'];
  	 }else{
- 	 $id=$_POST['id'];	
+ 	   $id=$_POST['id'];	
  	 }
 
-require_once('crunchercalendar.php');
+require_once('../../crunchercalendar.php');
 $resulta=muestraFechas($id, $mysqli);
 
         
@@ -30,7 +34,7 @@ $contenido = "
      <li>Fecha comienzo: ".$resulta[0]['inicio']."</li>
      <li>Fecha finalización prevista: ".$resulta[0]['fin']."</li>
      <li>Horas realizadas: ".$resulta[0]['horas']."</li>
-     <li>Horas restantes: ".(370-$resulta[0]['horas'])."</li>
+     <li>Horas restantes: ".(384-$resulta[0]['horas'])."</li>
      </ul>
      </div>
      <div class='modal fade' tabindex='-1' role='dialog' id='conffctmodal'>
@@ -130,7 +134,6 @@ $contenido = "
     </table>
     </div>
     </div>
-    <script src='js/formvalidar.js'></script>
     <script src='js/tablejs/scriptcalendaral.js'></script>
 
 

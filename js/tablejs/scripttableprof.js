@@ -246,6 +246,66 @@ function actualizarDB(acc, table) {
 
 
 $(document).ready(function() {
+
+    $("#formodal").validate({
+
+            rules: {
+                inputuser: {
+                    required: true,
+                    minlength: 4,
+                    maxlength: 20
+
+                },
+                inputpass: {
+                    required: false,
+                    minlength: 5
+                },
+                inputname: "required",
+                inputapellidos:"required",
+                inputcorreo: "required",
+                inputdni: "required",
+                inputfechaalta: {
+                    required: true,
+                    date: true,
+                    //dateLessThan : '#inputfechabaja'
+
+                },
+                inputfechabaja: {
+                    required: false,
+                    date: true,
+                    //dateGreaterThan : '#inputfechaalta'
+                },
+            },
+            messages: {
+                inputuser: {
+                    required: "Inserta un usuario",
+                    minlength: "El nombre de usuario necesita al menos 4 carácteres",
+                    maxlength: "El nombre de usuario admite 20 caracteres como máximo"
+                },
+                inputpass: {
+                    minlength: "Tu contraseña tiene que tener al menos 5 carácteres"
+                },
+                inputname: "Inserta un nombre",
+                inputapellidos: "Inserta los apellidos",
+                inputdni: "Inserta el DNI",
+                inputfechaalta: {
+                    required: "Inserte una fecha de alta",
+                    date: "Tiene que ser un formato de fecha válida (AAAA-MM-DD)",
+                    dateLessThan : 'Esta fecha tiene que ser anterior a la fecha de baja'
+
+                },
+                inputfechabaja: {   
+                    date: "Tiene que ser un formato de fecha válida (AAAA-MM-DD)",
+                    dateLessThan : 'Esta fecha tiene que ser posterior a la fecha de alta'
+                },
+            },
+              submitHandler: function(form) {
+                submitUpdate();
+              }
+
+
+        });
+
 if (!Modernizr.inputtypes.date) {
             $("input[type=date]").datepicker({
                 closeText: "Cerrar",

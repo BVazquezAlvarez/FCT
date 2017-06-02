@@ -1,6 +1,7 @@
 <?php
 require_once('data/conexiondb.php');
-
+require_once('data/permisos.php');
+!isprofe() ? header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404) : true;
 
 $funcion=""; 
 $funcion    = $mysqli->real_escape_string($_POST["funcion"]);
@@ -21,15 +22,14 @@ $funcion    = $mysqli->real_escape_string($_POST["funcion"]);
     }else{
     
     if($_SESSION["tipousuario"]==2 || $_SESSION["tipousuario"]==1){
-     $sql="SELECT usuarios.id, usuario, correo ,nombre, apellidos, tipousuario, dni, direccion, poblacion, alta, baja, codpostal, provincia, fechanac, activo FROM usuarios RIGHT JOIN alumnos ON(usuarios.id=alumnos.id) WHERE usuarios.id IN( SELECT alumnos FROM fct WHERE docente='".$_SESSION["id"]."')";
+     $sql="SELECT usuarios.id, usuario, correo ,nombre, apellidos, tipousuario, dni, direccion, poblacion, alta, baja, codpostal, provincia, fechanac, activo FROM usuarios RIGHT JOIN alumnos ON(usuarios.id=alumnos.id) WHERE usuarios.id IN( SELECT alumno FROM fct WHERE docente='".$_SESSION["id"]."')";
     }
     
     elseif ($_SESSION["tipousuario"]==0){
     $sql="SELECT usuarios.id, usuario, correo ,nombre, apellidos, tipousuario, dni, direccion, poblacion, alta, baja, codpostal, provincia, fechanac, activo FROM usuarios RIGHT JOIN alumnos ON(usuarios.id=alumnos.id)";
     }
     $result = $mysqli->query($sql);
-
-    //if ($mysqli->errno) {echo('Esto va mal' . $mysqli->error);}
+    if ($mysqli->errno) {echo('Esto va mal' . $mysqli->error);}
 
     $resulta['data'] = array();
     while($registro = $result->fetch_assoc()) {

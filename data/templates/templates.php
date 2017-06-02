@@ -63,7 +63,7 @@ $navbaradmin='
                                 <li><a id="perfil">Mi perfil</a></li>
                             </ul>
                         </li>
-                        <li class=""><a href="#">Desconectar</a></li>
+                        <li class=""><a id="deslog">Desconectar</a></li>
                     </ul>
                 </div>
             </div>
@@ -103,7 +103,7 @@ $navbarprofe='<body>
                         <li class=" dropdown"><a class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a id="gestal">Gestionar Alumnos</a></li>
-                                <li><a id="gesFCT">Gestionar Empresas</a></li>
+                                <li><a id="gestFCT">Gestionar Empresas</a></li>
                             </ul>
                         </li>                        
                     </ul>
@@ -114,7 +114,7 @@ $navbarprofe='<body>
                                 <li><a id="perfil">Mi perfil</a></li>
                             </ul>
                         </li>
-                        <li class=""><a href="#">Desconectar</a></li>
+                        <li class=""><a id="deslog">Desconectar</a></li>
                     </ul>
                 </div>
             </div>
@@ -158,7 +158,7 @@ $navbaruser='<body>
                                 <li><a id="perfil" >Mi perfil</a></li>
                             </ul>
                         </li>
-                        <li class=""><a href="#">Desconectar</a></li>
+                        <li class=""><a id="deslog">Desconectar</a></li>
                     </ul>
                 </div>
             </div>

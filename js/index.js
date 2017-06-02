@@ -19,12 +19,15 @@ $( "#perfil" ).click(function() {
 $("#importCSV").click(function() {
   ajaxLoad("gestCSV");
 });
+$("#deslog").click(function() {
+  document.location = 'data/pages/deslog.php';
+});
 
 function ajaxLoad(urlgo){
 $.ajax({
     type: "POST",
     dataType: "html",
-    url: urlgo+".php",
+    url: "data/pages/"+urlgo+".php",
 })
  .done(function( data, textStatus, jqXHR ) {
      if ( console && console.log ) {
