@@ -1,8 +1,6 @@
 <?php
 require_once('data/conexiondb.php');
-require_once('data/permisos.php');
-!isprofe() ? header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404) : true;
-
+$permisos->isprofe();
 $funcion=""; 
 $funcion    = $mysqli->real_escape_string($_POST["funcion"]);
 

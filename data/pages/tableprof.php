@@ -1,6 +1,6 @@
   <?php 
-require_once('../permisos.php');
-isadmin();
+ require_once('../conexiondb.php');
+$permisos->isadmin();
 
 $contenido = "
   <div  class='container' style='margin-top: 90px;'>
@@ -61,78 +61,77 @@ $contenido = "
         <div id='mal' class='alert alert-danger hide'>
         <strong>Oops!</strong> Te has olvidado de rellenar algún campo
     </div>
-        <form id='formodal'>
+      <form id='formodal' role='form' action='' method='post'>
         <div class='row'>
          <div class='form-group  col-md-2'>
         <label for='inputid'>ID</label>
-        <input type='text' maxlength='20' class='form-control' id='inputid' placeholder='ID' disabled='true'>
+        <input type='text' maxlength='20' name='inputid' class='form-control' id='inputid' placeholder='ID' disabled='true'>
       </div>
       <div class='form-group col-md-4'>
         <label for='inputuser'>Usuario</label>
-        <input type='text' maxlength='20' class='form-control' id='inputuser' placeholder='Usuario'>
+        <input type='text' maxlength='20' name='inputuser' class='form-control' id='inputuser' placeholder='Usuario'>
       </div>
       <div class='form-group col-md-4'>
         <label for='inputdni'>Correo</label>
-        <input type='email' maxlength='30' class='form-control' id='inputcorreo' placeholder='Correo'>
+        <input type='email' maxlength='30' name='inputcorreo' class='form-control' id='inputcorreo' placeholder='Correo'>
       </div> 
       </div>
       <div class='row'>
       <div class='form-group col-md-8'>
         <label for='inputpass'>Contraseña</label>
-        <input type='password' maxlength='20' class='form-control' id='inputpass' placeholder='Contraseña'>
+        <input type='password' maxlength='20' name='inputpass' class='form-control' id='inputpass' placeholder='Contraseña'>
       </div>
       </div>
       <div class='row'>
       <div class='form-group col-md-5'>
         <label for='inputname'>Nombre</label>
-        <input type='text' maxlength='10' class='form-control' id='inputname' placeholder='Nombre.' disabled='true'>
+        <input type='text' maxlength='10' class='form-control' name='inputname' id='inputname' placeholder='Nombre.' disabled='true'>
       </div>
       <div class='form-group col-md-6'>
         <label for='inputstartdate'>Apellidos</label>
-        <input type='date' maxlength='20' class='form-control' id='inputapellidos' placeholder='Apellidos'>
+        <input type='date' maxlength='20' class='form-control' name='inputapellidos' id='inputapellidos' placeholder='Apellidos'>
       </div>
       </div>
       <div class='row'>
       <div class='form-group col-md-5'>
         <label for='inputtuser'>Tipo Usuario</label>
-        <select  name='inputtuser' id='inputtuser' class ='form-control'>
+        <select  name='inputtuser' id='inputtuser' name='inputtuser' class ='form-control'>
           <option value='0'>Admin</option>
           <option value='1'>Tutor</option>
-          <option value='2'>Profesor</option>
-          <option value='3' selected>Alumno</option>
+          <option value='2' selected>Profesor</option>
+          <option value='3'>Alumno</option>
         </select>
       </div>
       <div class='form-group col-md-4'>
         <label for='DNI'>DNI</label>
-        <input type='text' maxlength='20' class='form-control' id='inputdni' placeholder='DNI'>
+        <input type='text' maxlength='20' class='form-control' name='inputdni' id='inputdni' placeholder='DNI'>
       </div> 
       </div> 
       <div class='row'>
       <div class='form-group col-md-5'>
         <label for='inputfechaalta'>Fecha alta</label>
-        <input type='text' maxlength='20' class='form-control' id='inputfechaalta' placeholder='Fecha alta'>
+        <input type='text' maxlength='20' class='form-control' name='inputfechaalta' id='inputfechaalta' placeholder='Fecha alta'>
       </div>
       <div class='form-group col-md-5'>
         <label for='inputfechabaja'>Fecha baja</label>
-        <input type='text' maxlength='20' class='form-control' id='inputfechabaja' placeholder='Fecha baja'>
+        <input type='text' maxlength='20' class='form-control' name='inputfechabaja' id='inputfechabaja' placeholder='Fecha baja'>
       </div>    
       </div>
       <div class='row'>
       <div class='form-group col-md-2'>
         <label for='inputactivo'>Activo</label>
-        <select  name='inputactivo' id='inputactivo' class ='form-control'>
+        <select  name='inputactivo' name='inputactivo' id='inputactivo' class ='form-control'>
           <option value='0'>No</option>
           <option value='1' selected>Si</option>
           
         </select>
       </div>
       </div>
-      
-    </form>
       </div>
       <div class='modal-footer'>
         <button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>
-        <button type='button' class='btn btn-primary' id='guardarform'></button>
+        <button type='button' class='btn btn-primary' name='guardarform' id='guardarform'></button>
+        </form>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

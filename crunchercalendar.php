@@ -32,8 +32,8 @@ function muestraFechas($id,$mysqli ){
 }
 
 function calculaFechaFinal(){
-	$fechaTemp = new Datetime($resulta[0]['inicio']); 
-  	$diasRestantes=(384-$resulta[0]['horas'])/8 ; //	$fechaTemp=$fechaTemp->add(new DateInterval('P1D'));
+	$fechaTemp = new Datetime(); 
+  	$diasRestantes=(384-$resulta[0]['horas'])/8 ; //	
       
         for ($i=0; $i<$diasRestantes; $i++)  {                                   
             

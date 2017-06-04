@@ -19,6 +19,9 @@ $( "#perfil" ).click(function() {
 $("#importCSV").click(function() {
   ajaxLoad("gestCSV");
 });
+$("#cambiacontra").click(function() {
+  ajaxLoad("cambiacontra");
+});
 $("#deslog").click(function() {
   document.location = 'data/pages/deslog.php';
 });

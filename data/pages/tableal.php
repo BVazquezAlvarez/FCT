@@ -1,7 +1,7 @@
 <?php 
 session_start();
-require_once('../permisos.php');
-isprofe();
+ require_once('../conexiondb.php');
+$permisos->isprofe();
 
 $contenido = "
   <div  class='container' style='margin-top: 90px;'>

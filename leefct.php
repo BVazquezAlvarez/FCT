@@ -1,8 +1,6 @@
 <?php
 require_once('data/conexiondb.php');
-require_once('../permisos.php');
-//!isprofe()? header("HTTP/1.0 404 Not Found");
-
+$permisos->isprofe();
     $sql="SELECT * FROM empresas";
     $result = $mysqli->query($sql);
 

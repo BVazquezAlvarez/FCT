@@ -32,20 +32,11 @@ $navbaradmin='
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Logo</a>
+                    <a class="navbar-brand" href="#"><img src="data/assets/icono.png"></img></a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#" class="">Inicio</a></li>
-                        <li class=" dropdown">
-                            <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FCT Alumnos<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li class=" dropdown">
-                                    <a href="calendarioadmin" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ver Calendarios</a>
-                                </li>
-                                <li><a href="fctasignador">Asignador FCT</a></li>
-                            </ul>
-                        </li>
                         <li class=" dropdown"><a class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a id="importCSV">Importar varios usuarios</a></li>                           
@@ -59,7 +50,7 @@ $navbaradmin='
                     <ul class="nav navbar-nav pull-right">
                         <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Conectado como '.$_SESSION["usuario"].' <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Cambiar contraseña</a></li>
+                                <li><a id="cambiacontra">Cambiar contraseña</a></li>
                                 <li><a id="perfil">Mi perfil</a></li>
                             </ul>
                         </li>
@@ -72,7 +63,13 @@ $navbaradmin='
 </div>
 
 
-<div id="contenido" class="container"></div>
+<div id="contenido" class="container"><div id="bienvenida" style="margin-top: 90px">Bienvenido a la gestión de FCT '.$_SESSION["usuario"].'. Usted es un administrador, por lo que tendrá acceso a lo siguiente:<br>
+    <ul>
+    <li><b>Importar varios usuarios:</b> Añadir varios alumnos a la vez a través de un archivo CSV.</li>
+    <li><b>Gestionar administradores:</b> Añadir y editar personas con todos los privilegios.</li>
+    <li><b>Gestionar profesores:</b> Añadir y editar personas con los privilegios de profesor (Gestionar Alumnos y su calendario).</li>
+    <li><b>Gestionar alumnos:</b> Añadir y editar alumnos que solo podrán gestionar su propio calendario.</li>
+    <li><b>Gestionar FTC:</b> Añadir y editar Empresas y sus puestos</li></div></div>
 ';
 $navbarprofe='<body>
     <div class="navbar-wrapper">
@@ -86,22 +83,14 @@ $navbarprofe='<body>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Logo</a>
+                    <a class="navbar-brand" href="#"><img src="data/assets/icono.png"></img></a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#" class="">Inicio</a></li>
-                        <li class=" dropdown">
-                            <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FCT Alumnos<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li class=" dropdown">
-                                    <a href="calendarioadmin" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ver Calendarios</a>
-                                </li>
-                                <li><a href="fctasignador">Asignador FCT</a></li>
-                            </ul>
-                        </li>
+                        <li class="active"><a href="#" class="">Inicio</a></li>                  
                         <li class=" dropdown"><a class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios <span class="caret"></span></a>
                             <ul class="dropdown-menu">
+                                <li><a id="importCSV">Importar varios usuarios</a></li>     
                                 <li><a id="gestal">Gestionar Alumnos</a></li>
                                 <li><a id="gestFCT">Gestionar Empresas</a></li>
                             </ul>
@@ -110,7 +99,7 @@ $navbarprofe='<body>
                     <ul class="nav navbar-nav pull-right">
                         <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Conectado como '.$_SESSION["usuario"].' <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Cambiar contraseña</a></li>
+                                <li><a id="cambiacontra">Cambiar contraseña</a></li>
                                 <li><a id="perfil">Mi perfil</a></li>
                             </ul>
                         </li>
@@ -121,8 +110,11 @@ $navbarprofe='<body>
         </nav>
     </div>
 </div>
-<div id="contenido" class="container"></div>
-
+<div id="contenido" class="container"><div id="bienvenida" style="margin-top: 90px">Bienvenido a la gestión de FCT '.$_SESSION["usuario"].'. Usted es un profesor, por lo que tendrá acceso a lo siguiente:<br>
+    <ul>
+    <li><b>Importar varios usuarios:</b> Añadir varios alumnos a la vez a través de un archivo CSV.</li>
+    <li><b>Gestionar alumnos:</b> Añadir y editar alumnos que solo podrán gestionar su propio calendario.</li>
+    <li><b>Gestionar FTC:</b> Añadir y editar Empresas y sus puestos</li></div></div>
     ';
 
 $navbaruser='<body>
@@ -137,7 +129,7 @@ $navbaruser='<body>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Logo</a>
+                    <a class="navbar-brand" href="#"><img src="data/assets/icono.png"></img></a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -154,7 +146,7 @@ $navbaruser='<body>
                     <ul class="nav navbar-nav pull-right">
                         <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Conectado como '.$_SESSION["usuario"].'  <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a >Cambiar contraseña</a></li>
+                                <li><a id="cambiacontra">Cambiar contraseña</a></li>
                                 <li><a id="perfil" >Mi perfil</a></li>
                             </ul>
                         </li>
@@ -165,8 +157,9 @@ $navbaruser='<body>
         </nav>
     </div>
 </div>
-<div id="contenido" class="container"></div>
-
+<div id="contenido" class="container"><div id="bienvenida" style="margin-top: 90px">Bienvenido a la gestión de FCT '.$_SESSION["usuario"].'. Usted es un alumno, por lo que tendrá acceso a lo siguiente:<br>
+    <ul>
+    <li><b>Gestionar tu calendario:</b> Añadir, editar las tareas que vas desempeñando en tu empresa, ver cuantas horas te quedan en que fecha aproximada terminas.</li>
 ';
 
 

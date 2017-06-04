@@ -1,8 +1,6 @@
 <?php  
 require_once('../conexiondb.php');
-require_once('../permisos.php');
-
-isuser();
+$permisos->isuser();
 
 if ($_SESSION["tipousuario"]==3) {
 

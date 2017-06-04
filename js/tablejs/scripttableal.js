@@ -339,7 +339,6 @@ $("#guardarform").click(function(event) {
 $("#formodal").submit();
 
 });
-//****** BOTON GUARDAR MODAL********//
 
   
 

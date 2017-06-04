@@ -1,6 +1,6 @@
 <?php
 require_once('data/conexiondb.php');
-
+$permisos->isuser();
 	if($_SESSION['tipousuario']==3){
     $sql="SELECT * FROM calendario WHERE calendario.idalumno=".$_SESSION['id'];
 	}else{

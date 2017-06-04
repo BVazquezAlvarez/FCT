@@ -1,5 +1,6 @@
  <?php
 require_once('data/conexiondb.php');
+$permisos->isprofe();
 header('Content-Type: application/json; charset=utf-8');
 $usuariobase  = $_POST["usuariobase"];
 $tipo         = $mysqli->real_escape_string($_POST["tipo"]);
@@ -46,7 +47,7 @@ if ($usuariobase == "alumno") {
         $sql   = "INSERT INTO `alumnos`(`id`, `apellidos`, `nombre`, `dni`, `direccion`, `poblacion`, `codpostal`, `provincia`, `fechanac`) VALUES ($newid,'" . $apellidos . "', '" . $nombre . "', '" . $dni . "', '" . $direccion . "', '" . $poblacion . "', '" . $codpostal . "', '" . $provincia . "', '" . $fechanac . "')";
         $mysqli->query($sql);
          if ($_SESSION["tipousuario"]==2 || $_SESSION["tipousuario"]==1) {
-              $sql   = "INSERT INTO `fct`(`id`, `alumno`, `docente`, `inicio`, `fin`, `horas`, `empresa`) VALUES (null,'".$newid."','".$_SESSION["id"]."',null,null,null,null)";
+              $sql   = "INSERT INTO `fct`(`id`, `alumno`, `docente`, `inicio`, `fin`, `horas`, `empresa`) VALUES (null,'".$newid."','".$_SESSION["user"]->id."',null,null,null,null)";
               $mysqli->query($sql);
             }      
         echo $newid;

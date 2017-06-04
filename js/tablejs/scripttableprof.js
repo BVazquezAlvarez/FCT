@@ -30,6 +30,53 @@ function actualizaSelect(){
         });
 }
 
+function submitUpdate() {
+        var fila;
+        var table = $('#example').DataTable();
+
+        if (accion == "engadir") {
+            actualizarDB(accion, table, botonactual);
+            var valores = {
+                'id': $('#inputid').val(),
+                'usuario': $('#inputuser').val(),
+                'nombre': $('#inputname').val(),
+                'correo': $('#inputcorreo').val(),
+                'apellidos': $('#inputapellidos').val(),
+                'tipousuario': $('#inputtuser').val(),
+                'dni': $('#inputdni').val(),
+                'alta': $('#inputfechaalta').val(),
+                'baja': $('#inputfechabaja').val(),
+                'activo': $('#inputactivo').val()
+
+
+            };
+            botonactual = table.row.add(valores).draw('false');
+            $('#formodal')[0].reset();
+
+        } else if (accion == "editar") {
+            actualizarDB(accion, table, botonactual);
+            var f = botonactual.closest('tr');
+            fila = table.row(f).index();
+            var valores = [
+                $('#inputid').val(),
+                $('#inputuser').val(),
+                $('#inputcorreo').val(),
+                $('#inputname').val(),
+                $('#inputapellidos').val(),
+                $('#inputtuser').val(),
+                $('#inputdni').val(),
+                $('#inputfechaalta').val(),
+                $('#inputfechabaja').val(),
+                $('#inputactivo').val()
+            ];
+            var columnas = table.columns().header().count();
+            for (var i = 0; i < columnas; i++) {
+                table.cell(fila, i).data(valores[i]);
+            }
+            table.draw(false);
+            $('#vmodal').modal('hide');
+        }
+    }
 
 function actualizaAlumtutor(table) {
     $('#tablamodal').modal({
@@ -446,59 +493,12 @@ if (!Modernizr.inputtypes.date) {
 
     //****** BOTON GUARDAR MODAL********//
 
+$("#guardarform").click(function(event) {
+$("#formodal").submit();
 
-    $('#guardarform').click(function() {
-        var fila;
-        /*	if(accion=="engadir" || accion=="editar"){
-        		if(!formcontrol()){
-        			$('#mal').removeClass('hide');
-        			return false;
-        		}
+});
 
-        	}*/
-        if (accion == "engadir") {
-            actualizarDB(accion, table, botonactual);
-            var valores = {
-                'id': $('#inputid').val(),
-                'usuario': $('#inputuser').val(),
-                'nombre': $('#inputname').val(),
-                'correo': $('#inputcorreo').val(),
-                'apellidos': $('#inputapellidos').val(),
-                'tipousuario': $('#inputtuser').val(),
-                'dni': $('#inputdni').val(),
-                'alta': $('#inputfechaalta').val(),
-                'baja': $('#inputfechabaja').val(),
-                'activo': $('#inputactivo').val()
-
-
-            };
-            botonactual = table.row.add(valores).draw('false');
-            $('#formodal')[0].reset();
-
-        } else if (accion == "editar") {
-            actualizarDB(accion, table, botonactual);
-            var f = botonactual.closest('tr');
-            fila = table.row(f).index();
-            var valores = [
-                $('#inputid').val(),
-                $('#inputuser').val(),
-                $('#inputcorreo').val(),
-                $('#inputname').val(),
-                $('#inputapellidos').val(),
-                $('#inputtuser').val(),
-                $('#inputdni').val(),
-                $('#inputfechaalta').val(),
-                $('#inputfechabaja').val(),
-                $('#inputactivo').val()
-            ];
-            var columnas = table.columns().header().count();
-            for (var i = 0; i < columnas; i++) {
-                table.cell(fila, i).data(valores[i]);
-            }
-            table.draw(false);
-            $('#vmodal').modal('hide');
-        }
-    });
+    
 
 
     //**************BOTON EDITAR************
