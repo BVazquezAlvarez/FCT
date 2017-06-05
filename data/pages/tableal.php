@@ -53,7 +53,7 @@ $contenido = "
       <div class='row'>
       <div class='form-group col-md-5'>
         <label for='inputcorreo'>Correo</label>
-        <input type='text' maxlength='30' class='form-control' id='inputcorreo' name='inputcorreo' placeholder='Correo' required>
+        <input type='email' maxlength='30' class='form-control' id='inputcorreo' name='inputcorreo' placeholder='Correo' required>
       </div> 
       <div class='form-group col-md-3'>
         <label for='inputtuser'>Tipo Usuario</label>
@@ -89,11 +89,11 @@ $contenido = "
       <div class='row'>
       <div class='form-group col-md-5'>
         <label for='inputfechaalta'>Fecha alta</label>
-        <input type='text' maxlength='20' class='form-control' name='inputfechaalta' id='inputfechaalta' placeholder='Fecha alta' required>
+        <input type='date' maxlength='20' class='form-control' name='inputfechaalta' id='inputfechaalta' placeholder='Fecha alta' required>
       </div>
       <div class='form-group col-md-5'>
         <label for='inputfechabaja'>Fecha baja</label>
-        <input type='text' maxlength='20' class='form-control' name='inputfechabaja' id='inputfechabaja' placeholder='Fecha baja'>
+        <input type='date' maxlength='20' class='form-control' name='inputfechabaja' id='inputfechabaja' placeholder='Fecha baja'>
       </div>    
       </div>
       <div class='row'>

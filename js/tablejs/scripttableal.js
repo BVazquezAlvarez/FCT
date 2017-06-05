@@ -308,7 +308,7 @@ $("#formodal").validate({
                     $('#guardarform').removeClass('btn-danger');
                     $('#guardarform').html("Insertar");
                     $('#titulomodal').html("Nuevo alumno");
-                    $('#inputuser').prop("disabled", true);
+                    $('#inputuser').prop("disabled", false);
                     $('#inputcorreo').prop("disabled", false);
                     $('#inputpass').prop("disabled", false);
                     $('#inputname').prop("disabled", false);

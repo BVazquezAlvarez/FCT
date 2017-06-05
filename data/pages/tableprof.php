@@ -89,7 +89,7 @@ $contenido = "
       </div>
       <div class='form-group col-md-6'>
         <label for='inputstartdate'>Apellidos</label>
-        <input type='date' maxlength='20' class='form-control' name='inputapellidos' id='inputapellidos' placeholder='Apellidos'>
+        <input type='text' maxlength='20' class='form-control' name='inputapellidos' id='inputapellidos' placeholder='Apellidos'>
       </div>
       </div>
       <div class='row'>
@@ -110,11 +110,11 @@ $contenido = "
       <div class='row'>
       <div class='form-group col-md-5'>
         <label for='inputfechaalta'>Fecha alta</label>
-        <input type='text' maxlength='20' class='form-control' name='inputfechaalta' id='inputfechaalta' placeholder='Fecha alta'>
+        <input type='date' maxlength='20' class='form-control' name='inputfechaalta' id='inputfechaalta' placeholder='Fecha alta'>
       </div>
       <div class='form-group col-md-5'>
         <label for='inputfechabaja'>Fecha baja</label>
-        <input type='text' maxlength='20' class='form-control' name='inputfechabaja' id='inputfechabaja' placeholder='Fecha baja'>
+        <input type='date' maxlength='20' class='form-control' name='inputfechabaja' id='inputfechabaja' placeholder='Fecha baja'>
       </div>    
       </div>
       <div class='row'>

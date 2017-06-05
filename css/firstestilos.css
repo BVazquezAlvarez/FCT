@@ -20,3 +20,9 @@ border: none;
 #bienvenida{
     font-size: 13pt;
 }
+
+#mal, #exito{
+    position: absolute;
+    right: 20px;
+    width: 300px;
+}
